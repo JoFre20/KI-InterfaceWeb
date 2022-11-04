@@ -1,0 +1,72 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: blueviolet;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.navbar, .container {
+    background-color: rgb(28, 28,29);
+    min-width: 600px;
+    max-width: 800px;
+    border-radius: 3px;
+}
+
+.navbar {
+    padding: 1em;
+    margin-bottom: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn, input {
+    height: 35px;
+    padding: 0 1em;
+    border-radius: 8px;
+    color: #000;
+    background-color: lightgrey;
+    border-color: blueviolet;
+}
+
+.btnimg {
+    height: 25px;
+    width: 25px;
+}
+
+.color {
+    padding: 0 0.25em;
+    width: 100px;
+    margin: 0 1em;
+}
+
+.container {
+    min-height: 600px;
+    max-height: 800px;
+    display: grid;
+    grid-template-columns: repeat(var(--size), 1fr);
+    grid-template-rows: repeat(var(--size), 1fr);
+    gap: 3px;
+    padding: 3px;
+    margin-bottom: 10px;
+}
+
+.pixel {
+    background-color: #3d3d3d;
+    border-radius: 2px;
+}
+
+.triggerd {
+    background-color: lightslategray;
+}
