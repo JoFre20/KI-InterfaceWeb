@@ -19,8 +19,7 @@ body {
 
 .container {
     background-color: rgb(28, 28,29);
-    min-width: 600px;
-    max-width: 800px;
+    width: 800px;
     border-radius: 3px;
 }
 
@@ -33,115 +32,84 @@ body {
     border-color: blueviolet;
 }
 
-.color {
-    padding: 0 0.25em;
-    width: 100px;
-    margin: 0 1em;
-}
-
 .container {
     min-height: 600px;
-    max-height: 800px;
+    max-height: 900px;
     display: flex;
     padding: 3px;
     margin-bottom: 10px;
-    display: flex;
-    justify-content: center;
+    text-align: center;
     align-items: center;
     flex-direction: column;
 }
 
-.descreption {
-    margin-bottom: 15px;
-    width: 300px;
+.h1 {
+    margin-top: 20px;
     color: white;
+}
+
+.description {
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    width: 400px;
+}
+
+.faqcontainer {
+    margin-top: 10px;
+    min-height: 400px;
+    max-height: 600px;
+    display: grid;
+    grid-template-columns: 350px 350px;
+    grid-template-rows: 250px 250px;
+    gap: 10px;
+}
+
+.faqblock {
+    width: 350px;
+    height: 250px;
+    background: rgba(119, 136, 153, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(119, 136, 153, 0.3);
+    display: flex;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.fqalabel {
+    color: white;
+    width: 300px;
+    font-size: 20px;
+    margin-top: 5px;
+    margin-bottom: 8px;
+    font-weight: bolder;
+}
+
+.faqtext {
+    color: white;
+    width: 275px;
     font-size: 16px;
     text-align: justify;
+    font-weight: 500;
 }
 
-.exampleimg  {
-  display: none;
-}
-
-.exampleimg.show {
-  display: block;
-}
-
-.example {
-    align-items: center;
-    text-decoration: underline;
-
-}
-
-.exampleimg {
-    margin-top: 5px;
-    border: #fff;
-    border-radius: 2px;
-    margin-left: 29px;
-}
-
-input[type="file"]{
-    opacity: 0;
-    z-index: -1;
-    position: absolute;
-    top: -1px;
-    left: 0;
-    width: 0.1px;
-    height: 0.1px;
-}
-
-input[type="file"]:focus + label[for="files"]{
-    border: 1px solid #85E5FF;
-}
-
-label[for="files"]{
-    background: #FF7B47;
-    padding: 10px;
-    color: #fff;
-    font-family: sans-serif;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-label[for="files"]:hover{
-    background: #FF9E59;
-}
-
-.preimage {
-    margin-top: 20px;
-    width: 300px;
-    height: 300px;
-}
-
-.checkout {
-    margin-top: 10px;
-}
-
-.cancel {
-    border-radius: 4px;
-    width: 125px;
-    height: 40px;
-    margin-left: 5px;
-    font-size: 16px;
-    background-color: red;
-    border-color: grey;
-}
-
-.cancel:hover{
-    background-color: lightcoral;
-}
-
-.askki {
+.startbtn {
+    margin-top: 15px;
+    margin-bottom: 15px;
     border-radius: 4px;
     width: 125px;
     height: 40px;
     margin-right: 5px;
     font-size: 16px;
-    background-color: lime;
+    background-color: greenyellow;
     border-color: grey;
+    color: black;
 }
 
-.askki:hover {
+.startbtn:hover {
  background-color: lightgreen;
 }
