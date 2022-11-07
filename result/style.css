@@ -5,6 +5,7 @@
 }
 
 html, body {
+    font-family: 'Trebuchet MS', sans-serif;
     height: 100%;
 }
 
@@ -33,4 +34,16 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    color: white;
+}
+
+.number {
+    font-size: 60px;
+    margin-bottom: 50px;
+}
+
+.undetitel {
+    text-align: center;
+    width: 200px;
+    font-size: 20px;
 }
