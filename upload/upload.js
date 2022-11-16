@@ -1,5 +1,6 @@
 const exampletext = document.querySelector(".example");
 let showexampleimg = false;
+let dataURL;
 
 exampletext.addEventListener("click", function() {
     if(showexampleimg) {
@@ -111,7 +112,7 @@ window.uploadPhotos = function(url){
                 context.putImageData(imageData2,0,0,0,0, imageData2.width,   imageData2.height);
 
                 var dataUrl = canvas.toDataURL('image/jpeg');
-                console.log(dataUrl);
+                dataURL = dataUrl;
                 document.querySelector('.preimage').src = dataUrl;
             }
             image.src = readerEvent.target.result;
@@ -120,11 +121,18 @@ window.uploadPhotos = function(url){
     }
 };
 
-function askki() {
-    //Event wenn der Button KI fragen gedrückt wird
+async function askki() {
+    var kiresult = await fetchAsync("http://192.168.178.87:8090/numberrecognition/v1/rest/service/ki/askai?image=" + dataURL);
+    document.location.replace("http://192.168.178.87/result/?result=" + kiresult);
 }
 
 function abbrechen() {
     document.location.reload()
 }
+
+async function fetchAsync (url) {
+    let response = await fetch(url);
+    let data = await response.text();
+    return data;
+  }
 
