@@ -15,14 +15,25 @@
                 $(".loadingio-spinner-magnify-ptx9crp28is").show();
                 var Imagesrc = document.getElementById(id).src;
                 $(".loadwrapper").fadeIn();
-                console.log(await fetchAsync("http://127.0.0.1:8091/numberrecognition/v1/rest/service/ki/askai?image=" + Imagesrc))
-                //Ask KI und nach Antwort wechsel zur Antwork Seite.
+                await delay(2000);
+                var result = await fetchAsync("http://backend.nummererkennung.de/numberrecognition/v1/rest/service/ki/askai?image=" + Imagesrc);
+                if(result == "ERROR") {
+                    window.location.reload();
+                } else {
+                    window.location = "http://nummererkennung.de/result/?result=" + result;
+                }
             }
 
             async function fetchAsync (url) {
                 let response = await fetch(url);
                 let data = await response.text();
                 return data;
+            }
+
+            function delay(milliseconds){
+                return new Promise(resolve => {
+                    setTimeout(resolve, milliseconds);
+                });
             }
         </script>
         <div class="container">
@@ -43,7 +54,7 @@
                 var count = imgs.length;
                 for(var i = 0; i < count; i++) {
                     var img = imgs[i];
-                    result = await fetchAsync("http://127.0.0.1:8091/numberrecognition/v1/rest/service/data/randomimg");
+                    result = await fetchAsync("http://backend.nummererkennung.de/numberrecognition/v1/rest/service/data/randomimg");
                     console.log(result)
                     img.src = result;
                 }

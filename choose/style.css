@@ -2,10 +2,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'cabin', sans-serif;
 }
 
 html, body {
-    font-family: 'Trebuchet MS', sans-serif;
     height: 100%;
 }
 
@@ -32,7 +32,7 @@ body {
 .container {
     background-color: rgb(28, 28,29);
     width: 950px;
-    border-radius: 3px;
+    border-radius: 10px;
     height: 670px;
     display: flex;
     padding: 3px;
@@ -78,34 +78,31 @@ body {
 .pictureblock {
     width: 250px;
     height: 250px;
-    background: rgba(119, 136, 153, 0.2);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(119, 136, 153, 0.3);
+    background-color: #36393F;
     display: flex;
     text-align: center;
     align-items: center;
     flex-direction: column;
+    color: white;
 }
 
 .numimg {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 button {
-    margin-bottom: 5px;
+    background-color: #4F545C; /* Green */
+    border: none;
     border-radius: 4px;
-    width: 90px;
-    height: 30px;
+    color: white;
+    padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
     font-size: 16px;
-    background-color: greenyellow;
-    border-color: grey;
-    color: black;
-}
-
-button:hover {
- background-color: lightgreen;
-}
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  
+  button:hover {background-color: #686d73;}
