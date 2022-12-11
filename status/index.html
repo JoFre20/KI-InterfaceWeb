@@ -90,8 +90,6 @@ h1 {
         <script>
 
             async function init() {
-                const ki = document.getElementById("ki");
-                const img = document.getElementById("img");
                 document.getElementById("img").classList.remove("online")
                 document.getElementById("img").classList.remove("offline")
                 document.getElementById("img").classList.remove("problem")
@@ -126,7 +124,16 @@ h1 {
                 let response = await fetch(url).then(function (response) {
                     return response;
                 }).catch(function (err) {
-                    window.location = "http://nummererkennung.de/error_pages/F500.html";
+                    document.getElementById("img").classList.remove("online")
+                    document.getElementById("img").classList.remove("offline")
+                    document.getElementById("img").classList.remove("problem")
+                    document.getElementById("ki").classList.remove("online")
+                    document.getElementById("ki").classList.remove("offline")
+                    document.getElementById("ki").classList.remove("problem")
+                    document.getElementById("ki").classList.add("offline")
+                    document.getElementById("ki").innerText = "Offline";
+                    document.getElementById("img").classList.add("offline")
+                    document.getElementById("img").innerText = "Offline";
                 });
                 return await response.text();
             }
