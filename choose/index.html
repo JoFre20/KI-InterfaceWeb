@@ -16,18 +16,28 @@
                 var Imagesrc = document.getElementById(id).src;
                 $(".loadwrapper").fadeIn();
                 await delay(2000);
-                var result = await fetchAsync("http://backend.nummererkennung.de/numberrecognition/v1/rest/service/ki/askai?image=" + Imagesrc);
+                const result = await fetchAsync("http://backend.nummererkennung.de/numberrecognition/v1/rest/service/ki/askai?image=" + Imagesrc);
                 if(result == "ERROR") {
                     window.location.reload();
                 } else {
                     window.location = "http://nummererkennung.de/result/?result=" + result;
                 }
+                result.catch((error) => {
+                    console.error(error);
+                });
             }
 
             async function fetchAsync (url) {
-                let response = await fetch(url);
-                let data = await response.text();
-                return data;
+                let response = await fetch(url).then(function (response) {
+                    return response;
+                }).catch(function (err) {
+                    window.location = "http://nummererkennung.de/error_pages/F500.html";
+                });
+                let res = await response.text();
+                if(res == "WRONG DOMAIN") {
+                    window.location = "http://nummererkennung.de/error_pages/F500.html";
+                }
+                return res;
             }
 
             function delay(milliseconds){
@@ -64,9 +74,16 @@
 
 
             async function fetchAsync (url) {
-                let response = await fetch(url);
-                let data = await response.text();
-                return data;
+                let response = await fetch(url).then(function (response) {
+                    return response;
+                }).catch(function (err) {
+                    window.location = "http://nummererkennung.de/error_pages/F500.html";
+                });
+                let res = await response.text();
+                if(res == "WRONG DOMAIN") {
+                    window.location = "http://nummererkennung.de/error_pages/F500.html";
+                }
+                return res;
             }
 
             loadimg();

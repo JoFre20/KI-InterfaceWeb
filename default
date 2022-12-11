@@ -1,0 +1,68 @@
+server {
+        listen 80;
+        server_name backend.nummererkennung.de;
+
+        error_page 404 /404.html;
+        location = /404.html {
+                root /usr/share/nginx/html;
+                internal;
+        }
+
+        error_page 500 502 503 504 /50x.html;
+        location = /50x.html {
+                root /usr/share/nginx/html;
+                internal;
+        }
+
+        location / {
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_pass http://127.0.0.1:8090;
+        }
+}
+
+server {
+        listen 80;
+        server_name nummererkennung.de;
+
+        error_page 404 /404.html;
+        location = /404.html {
+                root /usr/share/nginx/html;
+                internal;
+        }
+
+        error_page 500 502 503 504 /50x.html;
+        location = /50x.html {
+                root /usr/share/nginx/html;
+                internal;
+        }
+
+        location / {
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_pass http://127.0.0.1:81;
+        }
+}
+
+server {
+        listen 80;
+        server_name status.nummererkennung.de;
+
+        error_page 404 /404.html;
+        location = /404.html {
+                root /usr/share/nginx/html;
+                internal;
+        }
+
+        error_page 500 502 503 504 /50x.html;
+        location = /50x.html {
+                root /usr/share/nginx/html;
+                internal;
+        }
+
+        location / {
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_pass http://127.0.0.1:81/status;
+        }
+}

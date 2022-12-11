@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+ <html lang='de'>
+ <head>
+ <title>Status Seite</title>
+ <meta http-equiv='content-type' content='text/html; charset=utf-8' />
+ <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+ <style>*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'cabin', sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: blueviolet;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container {
+    background-color: rgb(28, 28,29);
+    min-height: 600px;
+    max-height: 800px;
+    min-width: 600px;
+    max-width: 800px;
+    border-radius: 10px;
+    display: flex;
+    padding: 3px;
+    margin-bottom: 10px;
+    justify-content: top;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+}
+
+
+
+.statuspage {
+    margin-top: 160px;
+}
+
+.statusitem {
+    display: flex;
+}
+
+.status {
+    margin-left: 5px;
+}
+
+h2 {
+    margin-top: 20px;
+}
+
+h1 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.online {
+    color: lime;
+}
+
+.offline {
+    color: red;
+}
+
+.problem {
+    color: yellow;
+}
+
+</style>
+ 
+ </head>
+
+ <body>
+        <div class='container'>
+            <h1>Status Seite</h1>
+            <div class="statuspage">
+                <div class="statusitem"><h2>KI-Backend: </h2> <h2 class="status" id="ki"></h2></div>
+                <div class="statusitem"><h2>NummerDatabase: </h2> <h2 class="status" id="img"></h2></div>
+            </div>
+        </div>
+        <script>
+
+            async function init() {
+                const ki = document.getElementById("ki");
+                const img = document.getElementById("img");
+                document.getElementById("img").classList.remove("online")
+                document.getElementById("img").classList.remove("offline")
+                document.getElementById("img").classList.remove("problem")
+                document.getElementById("ki").classList.remove("online")
+                document.getElementById("ki").classList.remove("offline")
+                document.getElementById("ki").classList.remove("problem")
+
+                Jsonresult = await fetchAsync("http://backend.nummererkennung.de/numberrecognition/v1/rest/service/status");
+                const obj = JSON.parse(Jsonresult.replaceAll("<", "{").replaceAll(">", "}").replaceAll("(", "[").replaceAll(")", "]"));
+
+                if(obj.KI_STATUS == "ONLINE") {
+                    document.getElementById("ki").classList.add("online")
+                } else if (obj.KI_STATUS == "OFFLINE") {
+                    document.getElementById("ki").classList.add("offline")
+                } else if (obj.KI_STATUS == "PROBLEM") {
+                    document.getElementById("ki").classList.add("problem")
+                }
+                document.getElementById("ki").innerText = obj.KI_STATUS;
+
+                if(obj.IMG_STATUS == "ONLINE") {
+                    document.getElementById("img").classList.add("online")
+                } else if (obj.IMG_STATUS == "OFFLINE") {
+                    document.getElementById("img").classList.add("offline")
+                } else if (obj.IMG_STATUS == "PROBLEM") {
+                    document.getElementById("img").classList.add("problem")
+                }
+                document.getElementById("img").innerText = obj.IMG_STATUS;
+
+            }
+
+            async function fetchAsync (url) {
+                let response = await fetch(url).then(function (response) {
+                    return response;
+                }).catch(function (err) {
+                    window.location = "http://nummererkennung.de/error_pages/F500.html";
+                });
+                return await response.text();
+            }
+            
+            async function loop() {
+                while(true) {
+                    init();
+                    await delay(30000)
+                }
+            }
+
+            function delay(milliseconds){
+                return new Promise(resolve => {
+                    setTimeout(resolve, milliseconds);
+                });
+            }
+            loop();
+        </script>
+ </body>
+
+ </html>
