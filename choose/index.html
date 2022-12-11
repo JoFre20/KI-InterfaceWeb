@@ -15,7 +15,7 @@
                 $(".loadingio-spinner-magnify-ptx9crp28is").show();
                 var Imagesrc = document.getElementById(id).src;
                 $(".loadwrapper").fadeIn();
-                await delay(2000);
+                await delay(getRandomInt(500,1500));
                 const result = await fetchAsync("http://backend.nummererkennung.de/numberrecognition/v1/rest/service/ki/askai?image=" + Imagesrc);
                 if(result == "ERROR") {
                     window.location.reload();
@@ -38,6 +38,12 @@
                     window.location = "http://nummererkennung.de/error_pages/F500.html";
                 }
                 return res;
+            }
+
+            function getRandomInt(min, max) {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min) + min);
             }
 
             function delay(milliseconds){
