@@ -126,7 +126,7 @@ async function askki() {
         $(".loadwrapper").fadeIn();
         var kiresult = await fetchAsync("http://backend.nummererkennung.de/numberrecognition/v1/rest/service/ki/askai?image=" + dataURL);
         await delay(getRandomInt(500,1500));
-        document.location.replace("http://nummererkennung.de/result/?result=" + kiresult);
+        window.location = "http://nummererkennung.de/result/?result=" + kiresult;
     } else {
         alert("Bitte lade erst ein Foto hoch!")
     }
@@ -143,7 +143,11 @@ function filterRGBValue(value) {
 }
 
 function abbrechen() {
-    document.location.reload()
+    if(dataURL != undefined) {
+        document.location.reload()
+    } else {
+        history.back()
+    }
 }
 
 async function fetchAsync (url) {
