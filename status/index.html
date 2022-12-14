@@ -75,6 +75,21 @@ h1 {
     color: yellow;
 }
 
+button {
+    background-color: #4F545C;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 13px 30px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 35px;
+  }
+  
+  button:hover {background-color: #686d73;}
+
 </style>
  
  </head>
@@ -86,6 +101,7 @@ h1 {
                 <div class="statusitem"><h2>KI-Backend: </h2> <h2 class="status" id="ki"></h2></div>
                 <div class="statusitem"><h2>NummerDatabase: </h2> <h2 class="status" id="img"></h2></div>
             </div>
+            <button id="btn" onclick='window.location = "http://nummererkennung.de"'>Nach Hause?</button>
         </div>
         <script>
 
