@@ -60,7 +60,6 @@ body {
 
 .faqcontainer {
     margin-top: 10px;
-    height: 80%;
     display: grid;
     grid-template-columns: 350px 350px;
     grid-template-rows: 250px 250px;
@@ -96,6 +95,10 @@ body {
     font-weight: 400;
 }
 
+.letsgo {
+    margin-top: 15px;
+}
+
 .startbtn {
     background-color: #4F545C; /* Green */
     border: none;
@@ -107,6 +110,9 @@ body {
     display: inline-block;
     font-size: 16px;
     cursor: pointer;
+    width: 160px;
+    margin-left: 2px;
+    margin-right: 2px;
   }
   
   .startbtn:hover {background-color: #686d73;}

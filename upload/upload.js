@@ -76,9 +76,9 @@ window.uploadPhotos = function(url){
                     for(w=0; w<imageData.width; w++) {
                         console.log("Width: " + (w+1))
                         var index=(w*4)*imageData.width+(h*4);
-                        var red=imageData.data[index];
-                        var green=imageData.data[index+1];
-                        var blue=imageData.data[index+2];
+                        var red=(imageData.data[index]);
+                        var green=(imageData.data[index+1]);
+                        var blue=(imageData.data[index+2]);
                         //var alpha=imageData.data[index+3];
                         var average=(red+green+blue)/3;
                         imageData.data[index]=average;
@@ -95,10 +95,10 @@ window.uploadPhotos = function(url){
 
                 for(var i = 0; i < dataArr.length; i += 4)
                 {
-                    var r = dataArr[i]; // Red color lies between 0 and 255
-                    var g = dataArr[i + 1]; // Green color lies between 0 and 255
-                    var b = dataArr[i + 2]; // Blue color lies between 0 and 255
-                    var a = dataArr[i + 3]; // Transparency lies between 0 and 255
+                    var r = filterRGBValue(dataArr[i]); // Red color lies between 0 and 255
+                    var g = filterRGBValue(dataArr[i + 1]); // Green color lies between 0 and 255
+                    var b = filterRGBValue(dataArr[i + 2]); // Blue color lies between 0 and 255
+                    var a = 255; // Transparency lies between 0 and 255
 
                     var invertedRed = 255 - r;
                     var invertedGreen = 255 - g;
@@ -122,8 +122,24 @@ window.uploadPhotos = function(url){
 };
 
 async function askki() {
-    var kiresult = await fetchAsync("http://192.168.178.87:8090/numberrecognition/v1/rest/service/ki/askai?image=" + dataURL);
-    document.location.replace("http://192.168.178.87/result/?result=" + kiresult);
+    if(dataURL != undefined) {
+        $(".loadwrapper").fadeIn();
+        var kiresult = await fetchAsync("http://backend.nummererkennung.de/numberrecognition/v1/rest/service/ki/askai?image=" + dataURL);
+        await delay(getRandomInt(500,1500));
+        document.location.replace("http://nummererkennung.de/result/?result=" + kiresult);
+    } else {
+        alert("Bitte lade erst ein Foto hoch!")
+    }
+}
+
+const maginum = 128;
+function filterRGBValue(value) {
+    console.log(value)
+    if(value < maginum) {
+        return 0;
+    } else if(value > maginum) {
+        return 255;
+    }
 }
 
 function abbrechen() {
@@ -131,8 +147,27 @@ function abbrechen() {
 }
 
 async function fetchAsync (url) {
-    let response = await fetch(url);
-    let data = await response.text();
-    return data;
-  }
+    let response = await fetch(url).then(function (response) {
+        return response;
+    }).catch(function (err) {
+        window.location = "http://nummererkennung.de/error_pages/F500.html";
+    });
+    let res = await response.text();
+    if(res == "WRONG DOMAIN") {
+        window.location = "http://nummererkennung.de/error_pages/F500.html";
+    }
+    return res;
+}
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min);
+}
+
+function delay(milliseconds){
+    return new Promise(resolve => {
+        setTimeout(resolve, milliseconds);
+    });
+}
 

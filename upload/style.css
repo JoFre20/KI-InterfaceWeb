@@ -39,6 +39,18 @@ body {
     margin: 0 1em;
 }
 
+.loadwrapper {
+    background-color: blueviolet;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .container {
     min-height: 600px;
     max-height: 800px;
@@ -109,6 +121,7 @@ label[for="files"]:hover{
 }
 
 .preimage {
+    display: block;
     margin-top: 20px;
     width: 300px;
     height: 300px;
@@ -119,14 +132,18 @@ label[for="files"]:hover{
 }
 
 .cancel {
+    background-color: #4F545C;
+    border: none;
     border-radius: 4px;
-    width: 125px;
-    height: 40px;
-    margin-left: 5px;
-    font-size: 16px;
-    background-color: red;
-    border-color: grey;
     color: white;
+    padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .cancel:hover{
@@ -134,16 +151,18 @@ label[for="files"]:hover{
 }
 
 .askki {
+    background-color: #4F545C;
+    border: none;
     border-radius: 4px;
-    width: 125px;
-    height: 40px;
-    margin-right: 5px;
-    font-size: 16px;
-    background-color: lime;
-    border-color: grey;
     color: white;
+    padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
-.askki:hover {
- background-color: lightgreen;
-}
+.askki:hover {background-color: #686d73;}
